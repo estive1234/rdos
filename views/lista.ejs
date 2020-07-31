@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"> 
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Código funcionários</title>
+</head>
+<body>
+    <a href="/users/dashboard"> Voltar</a>
+</br>
+</br>
+    <a href="/users/logout">SAIR</a>
+    <table id="tabela">
+        
+        <tr>
+            <th>Código</th> <th>Empresa</th> <th>Função</th> <th>Valor hora</th>
+            
+        </tr>
+    </table>
+    
+    <script>
+        valor_hh()
+        async function valor_hh(){
+            try{
+                const tabela = document.getElementById('tabela')
+                const result =await fetch('/users/4682')
+                const hh=await result.json()
+                hh.forEach(row=>{
+                    const tr = document.createElement('tr')
+                    for(col in row){
+                        const td = document.createElement('td')
+                        if(col==='valor_hora'){
+                            td.textContent= formatValue(row[col])
+
+                        }else{
+                            td.textContent= row[col]
+
+                        }
+                        tr.appendChild(td)
+                    }
+                    tabela.appendChild(tr)
+                })                
+            }
+            catch(e){
+                throw e
+            }
+        }
+        
+        
+        
+        const formatValue = (value) =>
+        Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(value);
+        
+        
+        
+        
+        
+    </script>
+    <footer>&copy; Guilherme Portella </footer>
+</body>
+
+</html>

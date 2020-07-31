@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"> 
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/users/numero">Voltar</a>
+    
+    <ul id="lista">
+        
+    </ul>
+    
+    
+    
+    
+    
+    
+    
+    <footer>&copy; Guilherme Portella </footer>
+    
+    
+    <script>
+        descricao()
+        async function descricao(){
+        const lista = document.getElementById('lista')
+        const result =await fetch('/users/2224')
+        const hh=await result.json()
+        console.log(hh)
+        hh.forEach(dado=>{
+            const newIten = document.createElement('div')
+            const descricaoText = document.createElement('p')
+            descricaoText.textContent ='Descrição:'
+            newIten.appendChild(descricaoText)
+
+            const descricao = document.createElement('p')
+            descricao.textContent = dado.descricao
+            newIten.appendChild(descricao)
+
+            const obsText = document.createElement('p')
+            obsText.textContent='Observação:'
+            newIten.appendChild(obsText)
+
+            const obs = document.createElement('p')
+            obs.textContent = dado.obs
+            newIten.appendChild(obs)
+
+            lista.appendChild(newIten)
+        }
+        )
+        
+        }
+        
+        
+    </script>
+    
+</body>
+</html>

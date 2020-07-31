@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Novo RDO</title>
+</head>
+<body>
+    <a href="/users/logout">Sair</a>
+    
+</br>
+</br>
+
+<a href="/users/dashboard">Voltar</a>
+</br>
+</br>
+<h4>Adicionar linha</h4>
+<form action="/users/novo_rdo"  method="POST" >
+    
+    <!--<div>
+        <input type="number" id="projeto" name="projeto" placeholder="Número do projeto "/>
+        
+    </div>-->
+    
+    <div>
+        <input type="text" id="responsavel" name="responsavel" placeholder="  Responsavel" required/>
+        
+    </div>
+    
+    <div>
+        <input type="text" id="Nome" name="Nome" placeholder="  Nome do funcionario" required/>
+    </div>
+    
+    
+    <div>
+        <input type="number" id="codigo" name="codigo" placeholder="  Código do funcionario" required/>
+    </div>
+    
+    <label for="entrada">Entrada</label>
+    <div>
+        <input type="time" id="entrada" name="entrada" placeholder="  Entrada" required/>
+    </div>
+    
+    <label for="saida">Saida</label>
+    <div>
+        <input type="time" id="saida" name="saida" placeholder="  Saida" required/>
+    </div>
+    
+    <div>
+        <input type="text" id="normais" name="normais" placeholder="  Horas normais" required/>
+        
+    </div>
+    
+    <div>
+        <input type="text" id="horas_60" name="horas_60" placeholder="  Horas a 60" required/>
+        
+    </div>
+    
+    
+    <div>
+        <input type="text" id="horas_100" name="horas_100" placeholder="  Horas a 100" required/>
+        
+    </div>
+    
+    
+    <div>
+        <input type="text" id="adicional_noturno" name="adicional_noturno" placeholder="  Adicional noturno" required/>
+        
+    </div>
+    
+    
+    
+    <div>
+        <input type="submit" value=" Adicionar" />
+    </form>
+
+<h4 style="text-align: right;">Deletar linha</h4>
+    <form action="/users/novo_rdo2"  method="POST" style="text-align: right;" onsubmit="return confirm('Você tem certeza que deseja deletar essa linha ?')" >
+        
+        <div>
+            <input type="number" id="deletar" name="deletar" placeholder="Número do ID"/>
+            
+        </div>
+        
+        
+        <div>
+            <input type="submit" value="Deletar" />
+        </form>
+
+</br>
+</br>
+<h4 style="text-align: left;">Valor total:</h4><h4 id="total"></h4>
+</br>
+<!--<h4 style="text-align: left;">Porcentagem restante:</h4><h4 id="procentagem"></h4>-->
+<table id="tabela">
+    
+    <tr>
+        <th>id</th>  <th>responsavel</th> <th>Nome funcionario</th> <th>Função</th> <th>Entrada</th> <th>Saida</th> <th>Normais</th> <th>60%</th> <th>100%</th> <th>Adicional noturno</th> <th>Valor da hora</th> <th>Total</th> <th>status</th> <th>Número projeto</th>
+        
+    </tr>
+</table>
+
+<form action="/users/4444"  method="POST" >
+    <div>
+        <input type="submit" value=" Descrição" />
+    </form>
+    
+    
+    <script>
+        buscar()
+        async function buscar(){
+            try{
+                const tabela = document.getElementById('tabela')
+                const resto =document.getElementById('resto')
+                const result =await fetch('/users/4444')
+                const hh=await result.json()
+                console.log(hh)
+                hh.forEach(row=>{
+                    const tr = document.createElement('tr')
+                    for(col in row){
+                        const td = document.createElement('td')
+                        console.log(col)
+                     if(col==="valor_hh" || col==="valor_total"){
+                        td.textContent= formatValue(row[col])
+                     }else{
+                         td.textContent = row[col]
+                     }
+                        
+                        tr.appendChild(td)
+                    }
+                    tabela.appendChild(tr)
+                }) 
+                
+            }
+            catch(e){
+                throw e
+            }
+        }
+            
+        
+        const formatValue = (value) =>
+        Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(value);
+            
+        </script>
+        
+        
+        <footer>&copy; Guilherme Portella </footer>
+    </body>
+    </html>
+    
+    
+    

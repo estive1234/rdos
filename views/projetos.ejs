@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Projetos</title>
+</head>
+<body>
+    <a href="/users/logout">Sair</a>
+    
+</br>
+</br>
+
+<a href="/users/dashboard">Voltar</a>
+</br>
+<h4>Buscar</h4>
+
+ <form action="/users/projetos"  method="POST" >
+        
+        <div>
+            <input type="number" id="projeto" name="projeto" placeholder="  Número do projeto"/>
+            
+        </div>
+        
+        <div>
+            <input type="number" id="oc" name="oc" placeholder="  Número da OC"/>
+        </div>
+        
+
+        <div>
+            <input type="text" id="fornecedor" name="fornecedor" placeholder="  Fornecedor"/>
+        </div>
+        
+        
+        
+        
+        <div>
+            <input type="submit" value=" Buscar" />
+        </form>
+
+
+
+
+        <h4 style="text-align: right;">Deletar</h4>
+
+        <form action="/users/projetos2"  method="POST" style="text-align: right;" onsubmit="return confirm('Você tem certeza que deseja deletar essa OC ?')" >
+        
+            <div>
+                <input type="number" id="deletar" name="deletar" placeholder="Número da OC"/>
+                
+            </div>
+            
+            
+            <div>
+                <input type="submit" value="Deletar" />
+            </form>
+        
+        <table id="tabela">
+            
+            <tr>
+                <th>id</th> <th>Número do projeto</th> <th>OC</th> <th>Fornecedor</th> <th>Valor faturado</th> <th>Valor total</th> <th>Valor atual</th> <th>Porcentagem restante</th>
+                
+            </tr>
+        </table>
+        
+        <script>
+            buscar()
+                async function buscar(){
+            try{
+                const tabela = document.getElementById('tabela')
+                const result =await fetch('/users/2222')
+                const hh=await result.json()
+                hh.forEach(row=>{
+                    const tr = document.createElement('tr')
+                    for(col in row){
+                        const td = document.createElement('td')
+                        console.log(col)
+                        if(col==='valor_faturado'||col==='valor_total'||col==='valor_atual'){
+                            td.textContent= formatValue(row[col])
+
+                      
+
+                        }else{ if(col==='porcentagem'){
+                            td.textContent = row[col] +'%'
+                        }else{
+                            td.textContent= row[col]
+                        }
+                    }
+                        
+
+                        tr.appendChild(td)
+                    }
+                    tabela.appendChild(tr)
+                })                
+            }
+            catch(e){
+                throw e
+            }
+        }
+        
+                
+        const formatValue = (value) =>
+        Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(value);
+
+
+
+        </script>
+            
+            
+            
+            
+        <footer>&copy; Guilherme Portella </footer>
+    </body>
+    </html>
+    
+    

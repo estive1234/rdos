@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="../css/loginStyle.css" type="text/css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Login</title>
+</head>
+<body >
+    <div class="panel">
+        <h1>Login</h1>
+        <ul>
+            <% if(messages.success_msg) {%>
+                <li><%= messages.success_msg %> </li>
+                <% } %>
+            </ul>
+            
+            <ul>
+                <% if(messages.erro){%>
+                    <li><%= messages.erro %>   </li>
+                    <%  }  %>
+                </ul>
+                
+                
+                <form action="/users/login" method="POST">
+                    
+                    <div>
+                        <input type="text" id="nick" name="nick" placeholder="  Usuario" required/>
+                        
+                    </div>
+                    
+                    <div>
+                        <input type="password" id="password" name="password" placeholder="  Senha" required/>
+                    </div>
+                    
+                    
+                    
+                    <div>
+                        <input type="submit" value=" Login"/>
+                        
+                    </div>
+                   <!--- <a href="/users/register">Criar uma conta </a>-->
+                    
+                </form>
+              
+            </div>
+            <footer>&copy; Guilherme Portella </footer>
+        </body>
+        </html>

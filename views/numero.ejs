@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"> 
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Aprovar RDOs</title>
+</head>
+<body>
+    <a href="/users/logout">SAIR</a>
+</br>
+<a href="/users/dashboard">VOLTAR</a>
+</br>
+</br>
+<form action="/users/numero"  method="POST" >
+        
+    <div>
+        <input type="number" id="rdo" name="rdo" placeholder="  Número da RDO" required/>
+        
+    </div>
+    
+    <div>
+        <input type="number" id="oc" name="oc" placeholder="  Número da OC" required/>
+    </div>
+
+    <div>
+        <input type="number" id="oc2" name="oc2" placeholder="  Número da OC 2" />
+    </div>
+    <div>
+        <input type="number" id="projeto" name="projeto" placeholder="  Número do projeto" />
+    </div>
+
+
+    
+    
+    
+    <div>
+        <input type="submit" value=" Aprovar" />
+    </form>
+
+<h4 style="text-align: center;">Ver descrição</h4>
+    <form action="/users/ver_descricao"  method="POST" style="text-align: center;" >
+        
+        <div>
+            <input type="number" id="descricao" name="descricao" placeholder="Número do rdo"/>
+            
+        </div>
+        
+        
+        <div>
+            <input type="submit" value="Descrição" />
+        </form>
+</br>
+<h4 style="text-align: left;">Recusar RDO</h4>
+    <form action="/users/recusar"  method="POST" style="text-align: left;" onsubmit="return confirm('Você tem certeza que deseja recusar essa RDO ?')" >
+        
+        <div>
+            <input type="number" id="recusar" name="recusar" placeholder="Número do rdo"/>
+            
+        </div>
+        <!--<div>
+            <input type="text" id="motivo" name="motivo" rows="400" cols="200" placeholder="Motivo de recusar"/>
+            
+        </div>-->
+      
+        
+        
+        <div>
+            <input type="submit" value="Recusar" />
+        </form>
+    </br>
+<a href="/users/projetos">Ver OCs existentes</a>
+
+
+    <table id="tabela">
+    
+        <tr>
+            <th>id</th>  <th>responsavel</th> <th>Nome funcionario</th> <th>Função</th> <th>Entrada</th> <th>Saida</th> <th>Normais</th> <th>60%</th> <th>100%</th> <th>Adicional noturno</th> <th>Valor da hora</th> <th>Total</th> <th>Numero RDO</th> <th>Status</th>
+            
+        </tr>
+    </table>
+    <script>
+        buscar()
+            async function buscar(){
+        try{
+            const tabela = document.getElementById('tabela')
+            const result =await fetch('/users/8484')
+            const hh=await result.json()
+            hh.forEach(row=>{
+                const tr = document.createElement('tr')
+                for(col in row){
+                    const td = document.createElement('td')
+                        td.textContent= row[col]
+
+                    tr.appendChild(td)
+                }
+                tabela.appendChild(tr)
+            })                
+        }
+        catch(e){
+            throw e
+        }
+    }
+    
+
+
+
+    </script>
+
+
+
+
+
+
+
+    <footer>&copy; Guilherme Portella </footer>
+
+</body>
+</html>

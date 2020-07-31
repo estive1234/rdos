@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Nova OC</title>
+</head>
+<body>
+    <a href="/users/logout">Sair</a>
+    
+</br>
+</br>
+
+<a href="/users/dashboard">Voltar</a>
+</br>
+</br>
+
+<form action="/users/nova_oc"  method="POST" onsubmit="return confirm('Você tem certeza que deseja criar essa OC ?')">
+        
+    <div>
+        <input type="number" id="projeto" name="projeto" placeholder="  Número do projeto" required/>
+        
+    </div>
+    
+    <div>
+        <input type="number" id="oc" name="oc" placeholder="  Número da OC" required/>
+    </div>
+
+
+    <div>
+        <input type="text" id="empresa" name="empresa" placeholder="  Nome da empresa" required/>
+    </div>
+
+
+    <div>
+        <input type="text" id="valor" name="valor" placeholder="  Valor da OC" required/>
+    </div>
+    
+    
+    
+    <div>
+        <input type="submit" value=" Criar" />
+    </form>
+
+</br>
+</br>
+</br>
+</br>
+<a href="/users/projetos">Ver Projetos/Ocs cadastrados </a>
+
+
+
+<footer>&copy; Guilherme Portella </footer>
+
+
+
+
+
+
+</body>
+</html>

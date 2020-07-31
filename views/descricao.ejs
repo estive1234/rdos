@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    
+    
+    <title>Descrição</title>
+</head>
+<body>
+    <a href="/users/novo_rdo">Voltar </a>
+</br>
+</br>
+    <form action="/users/novo_rdo/descricao" onsubmit="return confirm('Enviar RDO para aprovação?')"  method="POST" >
+        <label for="Descrição">Descrição</label>
+        <div>
+            <textarea id="descricao" rows="400" cols="200" name="descricao"  required></textarea>
+            
+        </div>
+        <label for="obs">Observação/Fiscalização</label>
+        <div>
+            <textarea id="obs" rows="400" cols="200" name="obs"  required></textarea>
+            
+        </div>
+
+        <div>
+            <input type="number" id="numero" name="numero" placeholder="  Número do RDO" required/>
+            
+        </div>
+        
+        
+        <div>
+            <input type="submit" value=" Enviar" />
+        </form>
+    
+
+
+
+</body>
+</html>

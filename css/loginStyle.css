@@ -1,0 +1,22 @@
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  
+}
+
+
+
+.panel{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+/*footer {
+   position:absolute;
+   bottom: 0;
+   right: 0;
+  }

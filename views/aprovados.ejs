@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="../css/footer.css" type="text/css">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/users/dashboard"> Voltar</a>
+</br>
+</br>
+    <a href="/users/logout">SAIR</a>
+</br>
+</br>
+
+    <!--<form action="/users/aprovados"  method="POST" >
+        
+        <div>
+            <input type="number" id="rdo" name="rdo" placeholder="  Número do RDO"/>
+            
+        </div>
+        
+        <div>
+            <input type="number" id="projeto" name="projeto" placeholder="  Número do Projeto"/>
+        </div>
+        
+
+        
+        
+        
+        
+        <div>
+            <input type="submit" value=" Buscar" />
+        </form>-->
+        <table id="tabela">
+            
+            <tr>
+                <th>RDO</th> <th>Número do projeto</th> <th>OC</th> <th>Valor faturado</th> <th>Status</th>
+                
+            </tr>
+        </table>
+        
+        <script>
+            buscar()
+                async function buscar(){
+            try{
+                const tabela = document.getElementById('tabela')
+                const result =await fetch('/users/6922')
+                const hh=await result.json()
+                hh.forEach(row=>{
+                    const tr = document.createElement('tr')
+                    for(col in row){
+                        const td = document.createElement('td')
+                        if(col==='valor_total'){
+                        
+                            td.textContent= formatValue(row[col])
+
+                        }else{
+                            td.textContent= row[col]
+
+                        }
+
+                        tr.appendChild(td)
+                    }
+                    tabela.appendChild(tr)
+                })                
+            }
+            catch(e){
+                throw e
+            }
+        }
+        
+
+
+        const formatValue = (value) =>
+        Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+        }).format(value);
+        </script>
+
+    
+</body>
+</html>
