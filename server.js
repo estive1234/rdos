@@ -87,7 +87,7 @@ app.get("/users/4682",async (req,res)=>{
     
 })
 
-app.get('/users/projetos',checkNotAuthenticated,async(req,res)=>{
+app.get('/users/projetos',async(req,res)=>{
     res.render ('projetos') 
 }
 )
